@@ -1,12 +1,13 @@
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
+const start = require("./bot/start");
 
 bot.start(ctx => {
-	return () => console.log(ctx);
+	return start(ctx)
 });
 
 bot.on("inline_query", ctx => {
-	return () => console.log(ctx);
+	return console.log(ctx);
 });
 
 exports.handler = async event => {
