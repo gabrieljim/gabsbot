@@ -1,7 +1,16 @@
-const Telegraf = require("telegraf");
-const bot = new Telegraf(process.env.BOT_TOKEN);
-const start = require("./bot/start");
+require("dotenv").config();
+process.env.NTBA_FIX_319 = 1;
+const TelegramBot = require("node-telegram-bot-api");
+const bot = new TelegramBot(process.env.BOT_TOKEN, {polling: true});
+console.log(process.env.BOT_TOKEN);
 
+bot.on("polling_error", err => console.log(err));
+
+bot.on("message", msg => {
+	bot.sendMessage(msg.chat.id, "hola");
+});
+
+/*
 const reply = ctx => {
 	console.log(ctx);
 	ctx.reply("holis");
@@ -23,3 +32,4 @@ exports.handler = async event => {
 	await bot.handleUpdate(JSON.parse(event.body));
 	return { statusCode: 200, body: "" };
 };
+*/
