@@ -2,11 +2,13 @@ const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const start = require("./bot/start");
 
-console.log("running");
-
 bot.start(ctx => {
 	return start(ctx)
 });
+
+bot.message(ctx => {
+	console.log(ctx)
+})
 
 bot.on("inline_query", ctx => {
 	return console.log(ctx);
